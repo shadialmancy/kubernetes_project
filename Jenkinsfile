@@ -6,7 +6,7 @@ pipeline {
         BACKEND_TAG = 'backend'
         DOCKERHUB_USERNAME = 'shadialmancy'            
         DOCKERHUB_REPOSITORY = 'web_application'   
-        KUBECONFIG = '/root/.kube/config'           
+        KUBECONFIG = '/home/jenkins/.kube/config'           
     }
     stages {
         stage('Hello') {
