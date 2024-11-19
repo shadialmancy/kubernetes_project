@@ -7,14 +7,14 @@ pipeline {
         DOCKERHUB_USERNAME = 'shadialmancy'            
         DOCKERHUB_REPOSITORY = 'web_application'   
         KUBECONFIG = '/home/jenkins/.kube/config'
-        MY_CRED = credentials('DOCKER_CRED')
+        // MY_CRED = credentials('DOCKER_CRED')
     }
     stages {
-        stage('Docker_cred') {
-            steps {
-                echo $env.MY_CRED_USR
-            }
-        }
+        // stage('Docker_cred') {
+        //     steps {
+        //         echo $env.MY_CRED_USR
+        //     }
+        // }
         stage('Hello') {
             steps {
                 echo 'Hello World'
