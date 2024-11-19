@@ -32,9 +32,12 @@ pipeline {
                 
                     script {
                         docker.build("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}")
-                        docker.withRegistry('', DOCKERHUB_CREDENTIALS_ID) {
+                        withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhub-pwd'), string(credentialsId: 'dockerhubusername', variable: 'dockerhub-username')]) {
+                            sh 'docker login -u ${dockerhub-username} -p ${dockerhub-pwd}'    
+                            docker.withRegistry('', DOCKERHUB_CREDENTIALS_ID) {
                             docker.image("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}").push("${FRONTEND_TAG}")
-                        }
+                            }
+                        }   
                     }
                 
             }
