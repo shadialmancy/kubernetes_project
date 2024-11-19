@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Docker_cred') {
             steps {
-                echo $MY_CRED_USR
+                echo $env.MY_CRED_USR
             }
         }
         stage('Hello') {
