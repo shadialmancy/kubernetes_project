@@ -65,6 +65,8 @@ pipeline {
                 export KUBECONFIG=/home/jenkins/.kube/config
                 kubectl apply -f ./nodeDeployment.yaml
                 kubectl apply -f ./mongo-k8s.yml
+                kubectl apply -f ./presistent_volume_claim.yml
+                kubectl apply -f ./presistent_volume.yml
                 '''
             }
         }
