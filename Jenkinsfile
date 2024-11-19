@@ -68,7 +68,7 @@ pipeline {
             steps {
                 sh '''
                 set -e
-                export KUBECONFIG=/home/jenkins/.kube/config
+                export KUBECONFIG=/root/.kube/config
                 kubectl apply -f ./nodeDeployment.yaml
                 kubectl apply -f ./mongo-k8s.yml
                 kubectl apply -f ./presistent_volume_claim.yml
@@ -84,3 +84,16 @@ pipeline {
     }
 }
 
+
+
+// apiVersion: kind.x-k8s.io/v1alpha4
+// kind: Cluster
+// nodes:
+// - role: control-plane
+//   extraPortMappings:
+//   - containerPort: 30000
+//     hostPort: 30000
+//     listenAddress: "0.0.0.0" # Optional, defaults to "0.0.0.0"
+//     protocol: tcp # Optional, defaults to tcp
+// - role: worker
+// - role: worker
