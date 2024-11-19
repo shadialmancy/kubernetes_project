@@ -9,7 +9,7 @@ pipeline {
         KUBECONFIG = '/home/jenkins/.kube/config'           
     }
     stages {
-        stage('Hello') {
+        stage('Docker_cred') {
             steps {
                 echo $DOCKER_CRED_USR
             }
