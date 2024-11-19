@@ -58,9 +58,8 @@ pipeline {
                 sh '''
                 set -e
                 export KUBECONFIG=/root/.kube/config
-                kubectl apply -f k8s/FrontendDeployment.yaml
-                kubectl apply -f k8s/BackendDeployment.yaml
-                kubectl apply -f k8s/nodeDeployment.yaml
+                kubectl apply -f ./nodeDeployment.yaml
+                kubectl apply -f ./mongo-k8s.yml
                 '''
             }
         }
@@ -71,3 +70,4 @@ pipeline {
         }
     }
 }
+
