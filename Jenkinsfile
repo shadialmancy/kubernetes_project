@@ -33,7 +33,7 @@ pipeline {
                     script {
                         docker.build("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}")
                         withCredentials([string(credentialsId: 'dockerhub-pwd2', variable: 'dockerhub-pwd'), string(credentialsId: 'dockerhubusername', variable: 'dockerhub-username')]) {
-                            sh 'docker login -u ${dockerhub-username} -p ${dockerhub-pwd}'    
+                            sh 'docker login -u shadialmancy -p ${dockerhub-pwd}'    
                             docker.withRegistry('', DOCKERHUB_CREDENTIALS_ID) {
                             docker.image("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}").push("${FRONTEND_TAG}")
                             }
