@@ -62,7 +62,7 @@ pipeline {
             steps {
                 sh '''
                 set -e
-                export KUBECONFIG=/root/.kube/config
+                export KUBECONFIG=/home/jenkins/.kube/config
                 kubectl apply -f ./nodeDeployment.yaml
                 kubectl apply -f ./mongo-k8s.yml
                 '''
