@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_CREDENTIALS_ID = 'DOCKER_CRED'  
-        FRONTEND_TAG = 'v10'
+        FRONTEND_TAG = 'v10.1'
         BACKEND_TAG = 'backend'
         DOCKERHUB_USERNAME = 'shadialmancy'            
         DOCKERHUB_REPOSITORY = 'web_application'   
