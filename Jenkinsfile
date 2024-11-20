@@ -1,13 +1,13 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS_ID = 'dockerhub-creds'  
+        DOCKERHUB_CREDENTIALS_ID = 'DOCKER_CRED'  
         FRONTEND_TAG = 'v10'
         BACKEND_TAG = 'backend'
         DOCKERHUB_USERNAME = 'shadialmancy'            
         DOCKERHUB_REPOSITORY = 'web_application'   
         KUBECONFIG = '/home/jenkins/.kube/config'
-        // MY_CRED = credentials('DOCKER_CRED')
+        MY_CRED = credentials('DOCKER_CRED')
     }
     stages {
         // stage('Docker_cred') {
@@ -33,17 +33,22 @@ pipeline {
             }
         }
 
-        stage('Build Frontend Image') {
+        stage('Build Image') {
             steps {
                 
                     script {
-                        sh 'docker login -u shadialmancy -p Almancy@190'    
+                        
+                        sh 'docker'
                         docker.build("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}")
-                        sh 'docker push shadialmancy/web_application:v10'
+                        // sh 'docker push shadialmancy/web_application:v10'
+                        docker.withRegistry('', DOCKERHUB_CREDENTIALS_ID) {
+                            docker.image("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}").push("${FRONTEND_TAG}")
+                        }
+
                         // withCredentials([string(credentialsId: 'dockerhub-pwd2', variable: 'dockerhub-pwd'), string(credentialsId: 'dockerhubusername', variable: 'dockerhub-username')]) {
-                            
-                        //     docker.withRegistry('', DOCKERHUB_CREDENTIALS_ID) {
-                        //     docker.image("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}").push("${FRONTEND_TAG}")
+                        //     sh 'docker login -u ${dockerhub-username} -p ${dockerhub-pwd}'
+                        //     // docker.withRegistry('', DOCKERHUB_CREDENTIALS_ID) {
+                        //     // docker.image("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}").push("${FRONTEND_TAG}")
                         //     }
                         // }   
                     }

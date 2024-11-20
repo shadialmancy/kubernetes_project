@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Products</h1>
+      <h1>Product</h1>
       {products && <Table dataSource={products} columns={columns} />}
     </div>
   );
