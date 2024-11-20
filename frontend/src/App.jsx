@@ -47,7 +47,7 @@ function App() {
     console.log("import.meta.env.VITE_POD_NAME_FORTH"+import.meta.env.VITE_POD_NAME_FORTH);
     const podIp = import.meta.env.VITE_POD_IP || "localhost:5000";  
     axios
-      .get(`http://${podIp}/products`)
+      .get(`http://finalproject1.localdev.me:30000/products`)
       .then((e) => setProducts(e.data))
       .catch((err) => console.log(err));
   }, []);

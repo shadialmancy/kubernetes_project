@@ -85,7 +85,7 @@ pipeline {
 }
 
 
-
+// https://kubernetes.github.io/ingress-nginx/deploy/
 // apiVersion: kind.x-k8s.io/v1alpha4
 // kind: Cluster
 // nodes:
