@@ -29,7 +29,7 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.podIP
-          image: shadialmancy/web_application:v10 # Replace with your Docker image
+          image: shadialmancy/web_application:v10.1 # Replace with your Docker image
           ports:
             - containerPort: 5000
           volumeMounts:
