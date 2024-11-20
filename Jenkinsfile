@@ -39,7 +39,7 @@ pipeline {
                     script {
                         
                         sh 'docker'
-                        docker.build("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}")
+                        docker.build("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}","--no-cache .")
                         // sh 'docker push shadialmancy/web_application:v10'
                         docker.withRegistry('', DOCKERHUB_CREDENTIALS_ID) {
                             docker.image("${DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY}:${FRONTEND_TAG}").push("${FRONTEND_TAG}")
