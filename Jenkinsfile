@@ -105,7 +105,6 @@ pipeline {
                 kubectl create ingress node-app-localhost --class=nginx \
                 --rule="node-app.localdev.me/*=node-app:80"
 
-                kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8090:80 
                 '''
             }
         }
