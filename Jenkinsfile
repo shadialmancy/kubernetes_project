@@ -101,7 +101,7 @@ pipeline {
             steps{
                 sh '''
                 set -e
-                export KUBECONFIG=home/jenkins/.kube/config
+                export KUBECONFIG=/home/jenkins/.kube/config
                 kubectl create ingress node-app-localhost --class=nginx \
                 --rule="node-app.localdev.me/*=node-app:80"
 
