@@ -85,13 +85,13 @@ pipeline {
         stage('Check if Ingress Exists') {
             steps {
                 script {
-                    def ingressExists = sh(script: "kubectl get ingress ${ING_NAME} -n ${NAMESPACE} --ignore-not-found", returnStatus: true) == 0
+                    def ingressExists = sh(script: "kubectl get ingress node-app-localhost --ignore-not-found", returnStatus: true) == 0
                     if (ingressExists) {
-                        echo "Ingress ${ING_NAME} exists. Deleting it..."
+                        echo "Ingress node-app-localhost exists. Deleting it..."
                         // Delete the Ingress if it exists
-                        sh "kubectl delete ingress ${ING_NAME} -n ${NAMESPACE}"
+                        sh "kubectl delete ingress node-app-localhost"
                     } else {
-                        echo "Ingress ${ING_NAME} does not exist."
+                        echo "Ingress node-app-localhost does not exist."
                     }
                 }
             }
