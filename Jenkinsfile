@@ -81,6 +81,35 @@ pipeline {
                 '''
             }
         }
+
+        stage('Check if Ingress Exists') {
+            steps {
+                script {
+                    def ingressExists = sh(script: "kubectl get ingress ${ING_NAME} -n ${NAMESPACE} --ignore-not-found", returnStatus: true) == 0
+                    if (ingressExists) {
+                        echo "Ingress ${ING_NAME} exists. Deleting it..."
+                        // Delete the Ingress if it exists
+                        sh "kubectl delete ingress ${ING_NAME} -n ${NAMESPACE}"
+                    } else {
+                        echo "Ingress ${ING_NAME} does not exist."
+                    }
+                }
+            }
+        }
+    
+        stage("ingress service"){
+            steps{
+                sh '''
+                set -e
+                export KUBECONFIG=~/jenkins_home/.kube/config
+                kubectl create ingress node-app-localhost --class=nginx \
+                --rule="node-app.localdev.me/*=node-app:80"
+
+                kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8090:80 
+                '''
+            }
+        }
+
     }
     post {
         always {
