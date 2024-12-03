@@ -130,3 +130,8 @@ pipeline {
 //     protocol: tcp # Optional, defaults to tcp
 // - role: worker
 // - role: worker
+
+// helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+// helm repo add grafana https://grafana.github.io/helm-charts
+// helm install prometheus prometheus-community/prometheus
+// helm install grafana grafana/grafana
